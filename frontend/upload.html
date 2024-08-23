@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Files</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Resume</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Upload Files</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="results.html">Results</a>
-        </nav>
-    </header>
-    <main>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <label for="resume">Resume:</label>
-            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
-            <label for="jobDescription">Job Description:</label>
-            <input type="file" id="jobDescription" name="jobDescription" accept=".pdf,.doc,.docx" required>
-            <button type="submit">Upload</button>
-        </form>
-    </main>
-    <script src="js/scripts.js"></script>
+  <h1>Upload Your Resume</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="resume" />
+    <button type="submit">Upload</button>
+  </form>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

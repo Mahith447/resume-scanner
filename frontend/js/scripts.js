@@ -30,3 +30,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
         });
 });
+// Example JavaScript
+console.log('JavaScript is working!');
