@@ -1,16 +1,13 @@
-const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
+// Simulated file upload handling
+exports.uploadResume = (req, res) => {
+    // Here you would save the file to the server, then send a response
+    res.json({ message: 'Resume uploaded successfully!' });
+};
 
-const upload = multer({ storage: storage });
-
-module.exports = upload;
+exports.uploadJobDescription = (req, res) => {
+    // Handle job description upload
+    res.json({ message: 'Job description uploaded successfully!' });
+};

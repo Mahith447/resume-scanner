@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume Scanner</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Resume Scanner</title>
 </head>
 <body>
-  <h1>Welcome to the Resume Scanner!</h1>
-  <script src="js/scripts.js"></script>
+    <h1>Resume Scanner</h1>
+    <form id="uploadForm" action="/api/upload-resume" method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" required>
+        <button type="submit">Upload Resume</button>
+    </form>
+    <form id="jobDescriptionForm" action="/api/upload-job-description" method="POST" enctype="multipart/form-data">
+        <input type="file" name="jobDescription" required>
+        <button type="submit">Upload Job Description</button>
+    </form>
+    <button id="analyzeBtn">Analyze</button>
+    <div id="results"></div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>

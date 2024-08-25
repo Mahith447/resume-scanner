@@ -1,34 +1,21 @@
-document.getElementById('uploadForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+document.getElementById('analyzeBtn').addEventListener('click', async () => {
+    const resumeText = 'Extracted resume text here'; // Extract text from uploaded resume
+    const jobDescriptionText = 'Extracted job description text here'; // Extract text from job description
 
-    const formData = new FormData(this);
-
-    fetch('/api/upload', {
+    const response = await fetch('/api/analyze', {
         method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log('Success:', data);
-        // Redirect to results page or display a success message
-        window.location.href = 'results.html';
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Display an error message
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ resume: resumeText, jobDescription: jobDescriptionText }),
     });
+
+    const result = await response.json();
+    document.getElementById('results').innerHTML = `
+        <h3>Match Percentage: ${result.matchPercentage}%</h3>
+        <h4>Suggestions:</h4>
+        <ul>
+            ${result.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
+        </ul>
+    `;
 });
-// Add this code to handle displaying results
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/api/results')
-        .then(response => response.json())
-        .then(data => {
-            const resultsContainer = document.getElementById('resultsContainer');
-            resultsContainer.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
-// Example JavaScript
-console.log('JavaScript is working!');

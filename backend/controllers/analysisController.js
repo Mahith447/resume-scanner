@@ -1,10 +1,11 @@
-const pdf = require('pdf-parse');
-const fs = require('fs');
+const textAnalysis = require('../utils/textAnalysis');
 
-async function extractTextFromPDF(filePath) {
-    const dataBuffer = fs.readFileSync(filePath);
-    const data = await pdf(dataBuffer);
-    return data.text;
-}
+// Analyze the uploaded resume and job description
+exports.analyzeText = (req, res) => {
+    const resumeText = req.body.resume;
+    const jobDescriptionText = req.body.jobDescription;
 
-module.exports = { extractTextFromPDF };
+    const analysisResult = textAnalysis.analyze(resumeText, jobDescriptionText);
+    
+    res.json(analysisResult);
+};
